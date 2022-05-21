@@ -9,6 +9,9 @@ const reset = document.querySelector('#reset')
 
 inputs.forEach(square => {
     square.addEventListener('click', () => {
+       if (display.textContent.length === 1 && display.textContent === "0") {
+           display.textContent = "";
+       }
        display.textContent += square.id
        if(display.textContent === 16) {
            display.textContent = square.id
