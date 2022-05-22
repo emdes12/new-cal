@@ -3,18 +3,39 @@ const inputs = document.querySelectorAll('.inp');
 const equal = document.querySelector('#equat');
 const delte = document.querySelector('#del');
 const reset = document.querySelector('#reset')
+const operators = document.querySelectorAll('.operator');
 
 
 
 
-inputs.forEach(square => {
-    square.addEventListener('click', () => {
-       if (display.textContent.length === 1 && display.textContent === "0") {
-           display.textContent = "";
-       }
-       display.textContent += square.id
-       if(display.textContent === 16) {
-           display.textContent = square.id
+
+inputs.forEach(input => {
+    input.addEventListener('click', () => {
+        if (display.textContent.length === 1 && display.textContent === "0") {
+            display.textContent = "";
+        }
+
+        operators.forEach(operator => {
+            operator.addEventListener('click', operate)
+            
+            let inpOperator = []
+
+            function operate() {
+                inpOperator.push(operator.id)
+
+                if(inpOperator.length === 1) {
+                    inpOperator = inpOperator.shift()
+                    console.log(inpOperator)
+                }
+
+                display.textContent += inpOperator
+            }
+        })
+        
+        display.textContent += input.id
+       
+        if(display.textContent === 16) {
+           display.textContent = input.id
        }
        if(display.textContent === "") {
            display.textContent = 0
